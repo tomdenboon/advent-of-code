@@ -1,3 +1,3 @@
-# aoc2021
+# Advent of Code 2021
 
-My solutions to the 2021 aoc event.
+My attempts for the Advent of Code, 2021
