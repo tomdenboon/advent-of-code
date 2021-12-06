@@ -25,8 +25,7 @@ for l in file:
                 lines[(begin_x, begin_y)] = 1
             begin_x += x_dir
     elif abs(end_x - begin_x) == abs(end_y - begin_y):
-        loops = abs(end_x - begin_x)
-        for i in range(loops+1):
+        for i in range(abs(end_x - begin_x) + 1):
             if (begin_x, begin_y) in lines:
                 lines[(begin_x, begin_y)] += 1
             else:
