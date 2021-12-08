@@ -37,10 +37,6 @@ for line in file:
     for out in out_vals:
         for k in numberList:
             if numberList[k] == out:
-                print(k, out)
                 sum += str(k)
-    for k in numberList:
-        print(k, numberList[k])
-    print(sum)
     total_sum += int(sum)
 print(total_sum)
