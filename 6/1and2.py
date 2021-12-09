@@ -15,11 +15,12 @@ def calculate_fishes(breed_time, days):
     return fish
 
 
+days = [0] * 256
 file = open('input')
-for line in file:
-    print(line)
-    fishes = [int(x) for x in line.split(',')]
-    total_fish = 0
-    for fish in fishes:
-        total_fish += calculate_fishes(fish+1, 256)
-    print(total_fish)
+line = file.readline()
+fishes = [int(x) for x in line.split(',')]
+total_fish = 0
+for fish in fishes:
+    days[fish]
+    total_fish += calculate_fishes(fish+1, 256)
+print(total_fish)
