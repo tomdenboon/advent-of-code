@@ -25,27 +25,25 @@ def fold_y(paper, at_y):
     return paper
 
 
+file = open('input')
 paper = {}
 paper_x = 0
 paper_y = 0
-parse = True
 first_solution = True
-for line in open('input'):
+for line in file:
     if line == '\n':
-        parse = False
-        continue
-    if parse:
-        x, y = [int(x) for x in line.split(',')]
-        paper[(x, y)] = True
-    else:
-        tokens = line.strip().split('=')
-        if tokens[0][-1] == 'x':
-            paper_x = int(tokens[1])
-            paper = fold_x(paper, paper_x)
-        elif tokens[0][-1] == 'y':
-            paper_y = int(tokens[1])
-            paper = fold_y(paper, paper_y)
-        if first_solution:
-            print(len(paper))
-            first_solution = False
+        break
+    x, y = [int(x) for x in line.split(',')]
+    paper[(x, y)] = True
+for line in file:
+    tokens = line.strip().split('=')
+    if tokens[0][-1] == 'x':
+        paper_x = int(tokens[1])
+        paper = fold_x(paper, paper_x)
+    elif tokens[0][-1] == 'y':
+        paper_y = int(tokens[1])
+        paper = fold_y(paper, paper_y)
+    if first_solution:
+        print(len(paper))
+        first_solution = False
 print_paper(paper, paper_x, paper_y)
