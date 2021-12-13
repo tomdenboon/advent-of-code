@@ -44,12 +44,13 @@ def fold_y(paper, at_y):
 paper = {}
 paper_x = 0
 paper_y = 0
-first = True
+parse = True
+first_solution = True
 for line in open('input'):
     if line == '\n':
-        first = False
+        parse = False
         continue
-    if first:
+    if parse:
         x, y = [int(x) for x in line.split(',')]
         paper[(x, y)] = True
     else:
@@ -60,5 +61,7 @@ for line in open('input'):
         elif tokens[0][-1] == 'y':
             paper_y = int(tokens[1])
             paper = fold_y(paper, paper_y)
+        if first_solution:
+            print(len(paper))
+            first_solution = False
 print_paper(paper, paper_x, paper_y)
-print(len(paper))
