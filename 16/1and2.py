@@ -67,5 +67,4 @@ for c in open("input").readline():
         while len(next_bits) < 4:
             next_bits = '0' + next_bits
         bits += next_bits
-print(bits)
 print(readPacket(bits, 0))
