@@ -22,12 +22,12 @@ class Pair:
         return m
 
     def add(self, p):
-        p_pear = Pair(l=self, r=p)
-        self.parent = p_pear
+        p_pair = Pair(l=self, r=p)
+        self.parent = p_pair
         self.left = 1
-        p.parent = p_pear
+        p.parent = p_pair
         p.left = 0
-        return p_pear
+        return p_pair
 
     def add_ln(self, add):
         find_parent = self.parent
@@ -107,7 +107,7 @@ class Pair:
 
 f = open("input.txt")
 stack = []
-pears = []
+pairs = []
 for line in f:
     p = Pair()
     left = True
@@ -130,23 +130,22 @@ for line in f:
                 p.r = int(line[i])
         elif line[i] == ',':
             left = False
-    pears.append(p)
+    pairs.append(p)
 
-singular_pear = deepcopy(pears[0])
-for i in range(1, len(pears)):
-    singular_pear = singular_pear.add(deepcopy(pears[i]))
-    singular_pear.solve()
-print()
-print(singular_pear.magnitude())
+singular_pair = deepcopy(pairs[0])
+for i in range(1, len(pairs)):
+    singular_pair = singular_pair.add(deepcopy(pairs[i]))
+    singular_pair.solve()
+print(singular_pair.magnitude())
 
 largest_magn = 0
-for i in range(0, len(pears)):
-    for j in range(i+1, len(pears)):
-        p = deepcopy(pears[i]).add(deepcopy(pears[j]))
+for i in range(0, len(pairs)):
+    for j in range(i+1, len(pairs)):
+        p = deepcopy(pairs[i]).add(deepcopy(pairs[j]))
         p.solve()
         if p.magnitude() > largest_magn:
             largest_magn = p.magnitude()
-        p = deepcopy(pears[j]).add(deepcopy(pears[i]))
+        p = deepcopy(pairs[j]).add(deepcopy(pairs[i]))
         p.solve()
         if p.magnitude() > largest_magn:
             largest_magn = p.magnitude()
