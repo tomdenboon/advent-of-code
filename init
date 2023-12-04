@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+import os,sys
+
+def validate_day(day):
+    if day == "":
+        print("Usage: init [day] [-rm]")
+        return -1
+    if not day.isnumeric() or int(day) < 1 or int(day) > 25:
+        print(f"Invalid day: {day}, should be of format [1 - 25]")
+        return -1
+    return int(day)
+
+year = "2023"
+session= "53616c7465645f5f3ab8e0c8da8ba907cb20200ea073cc3d7c60e11b7f2ebbe8c0d98801dd55434a0ff5a470871170c1ba5f4c4dcc514975a0ecbefdb1ff78a0"
+remove_old_dir = False
+day = ""
+
+for arg in sys.argv[1:]:
+    match arg:
+        case "-rm":
+            remove_old_dir = True
+        case default:
+            day  = arg
+
+day = validate_day(day)
+
+if day != -1:
+    day = str(int(day))
+    day_dir = f"{year}/{day}"
+
+    if remove_old_dir and os.path.isdir(day_dir):
+        print(f"Removing day {day}...")
+        os.system("rm -r " + day_dir)
+
+    if not os.path.isdir(year):
+        os.mkdir(year)
+
+    if not os.path.isdir(day_dir):
+        os.mkdir(day_dir)
+
+        print(f"Initializing day {day}...")
+
+        open(f"{day_dir}/example.txt", "w")
+        open(f"{day_dir}/{day}.py", "w").write("import sys\n\nfile = open(sys.argv[1])")
+
+        curl = f"curl -s -b \"session={session}\" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt"
+        os.system(curl)
+
+        print("Done!")
+    else:
+        print(f"Day {day} is already initialized, use -rm to reset this day.")
+    
