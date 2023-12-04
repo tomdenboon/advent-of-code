@@ -1,24 +1,24 @@
 #!/usr/bin/env python
+year = "2023"
+test = False
+day = ""
 
 import os,sys
 
 def validate_day(day):
     if day == "":
-        print("Usage: solve [day] [-t]")
+        print("Usage: solve [-t] [day]")
         return -1
     elif not day.isnumeric() or int(day) < 1 or int(day) > 25:
         print("Invalid day: " + day)
         return -1
     return int(day)
 
-year = "2023"
-test = False
-day = ""
  
 for arg in sys.argv[1:]:
     match arg:
-        case "-test":
-            file = "example.txt"
+        case "-t":
+            test = True
         case default:
             day = arg
 
@@ -26,6 +26,6 @@ day = validate_day(day)
 if day != -1:
     input_file = "example.txt" if test else "input.txt"
     day_input = f"{year}/{day}/{input_file}"
-    day_file = f"{year}/{day}/{day}.py"
+    day_file = f"{year}/{day}/solution.py"
     command = f"python {day_file} {day_input}"
     os.system(command)
