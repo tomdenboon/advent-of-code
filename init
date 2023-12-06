@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 year = "2023"
-session=open(".env").read().strip()
+session=open("cookies.txt").read().strip()
 remove_old_dir = False
 day = ""
 template = """def part_one(input_as_string: str):
