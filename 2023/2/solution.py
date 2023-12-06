@@ -17,7 +17,7 @@ def score_part2(line):
     return math.prod(colors.values())
 
 def part_one():
-    print(sum(map(score_part1, )))
+    print(sum(map(score_part1, open(sys.argv[1]))))
         
 def part_two():
     print(sum(map(score_part2, open(sys.argv[1]))))
