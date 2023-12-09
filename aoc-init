@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+import os,sys
+
+year = "2023"
+session=open(".cookie").read().strip()
+remove_old_dir = False
+day = ""
+template = """import math, re
+
+def part_one(I: str):
+    print("TODO")
+        
+def part_two(I: str):
+    print("TODO")
+"""
+
+
+def validate_day(day):
+    if day == "":
+        print("Usage: init [day] [-r]")
+        exit()
+    if not day.isnumeric() or int(day) < 1 or int(day) > 25:
+        print(f"Invalid day: {day}, should be of format [1 - 25]")
+        exit()
+    return day
+
+
+for arg in sys.argv[1:]:
+    match arg:
+        case "-r":
+            remove_old_dir = True
+        case default:
+            day = arg
+
+day = validate_day(day)
+day_dir = f"{year}/{day}"
+
+if remove_old_dir and os.path.isdir(day_dir):
+    print(f"Removing day {day}...")
+    os.system("rm -r " + day_dir)
+
+if not os.path.isdir(year):
+    os.mkdir(year)
+
+if not os.path.isdir(day_dir):
+    os.mkdir(day_dir)
+
+    print(f"Initializing day {day}...")
+
+    curl = f"curl -b \"session={session}\" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt"
+    os.system(curl)
+    os.system(f"cp {day_dir}/input.txt {day_dir}/example.txt")
+
+    open(f"{day_dir}/solution.py", "w").write(template)
+    os.system(f"code {day_dir}/solution.py")
+
+    print("Done!")
+else:
+    print(f"Day {day} is already initialized, use -rm to reset this day.")

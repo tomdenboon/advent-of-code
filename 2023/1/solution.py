@@ -16,16 +16,16 @@ def prepare_line(line):
     return line
 
 
-def part_one(input_string: str):
+def part_one(input_as_string: str):
     score = 0
-    for line in input_string.splitlines():
+    for line in input_as_string.splitlines():
         digit_line = [int(c) for c in line if c.isnumeric()]
         score += digit_line[0] * 10 + digit_line[-1]
     print(score)
 
-def part_two(input_string: str):
+def part_two(input_as_string: str):
     score = 0
-    for line in input_string.splitlines():
+    for line in input_as_string.splitlines():
         digit_line = [int(c) for c in prepare_line(line) if c.isnumeric()]
         score += digit_line[0] * 10 + digit_line[-1]
     print(score)

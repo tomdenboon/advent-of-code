@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+year = "2023"
+test = False
+day = ""
+
+import os,sys, importlib
+
+sys.dont_write_bytecode = True
+dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = dir_path.replace("/bin", "")
+
+def validate_day(day):
+    if day == "":
+        print("Usage: solve [-t] [day]")
+        exit()
+    elif not day.isnumeric() or int(day) < 1 or int(day) > 25:
+        print("Invalid day: " + day)
+        exit()
+    return int(day)
+
+ 
+for arg in sys.argv[1:]:
+    match arg:
+        case "-t":
+            test = True
+        case default:
+            day = arg
+
+day = validate_day(day)
+
+input_file = "example.txt" if test else "input.txt"
+day_input = f"{dir_path}/{year}/{day}/{input_file}"
+day_file = f"{dir_path}/{year}/{day}/solution.py"
+
+solution = importlib.import_module(f"{year}.{day}.solution")
+input_as_string = open(day_input).read()
+solution.part_one(input_as_string)
+solution.part_two(input_as_string)
