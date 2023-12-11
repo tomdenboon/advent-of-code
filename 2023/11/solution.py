@@ -1,7 +1,7 @@
 import math, re
 
 def part_one(I: str):
-    print("TODO")
+    return 0
         
 def part_two(I: str):
-    print("TODO")
+    return 0
