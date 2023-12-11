@@ -21,17 +21,11 @@ def part_one(input_as_string: str):
     for line in input_as_string.splitlines():
         digit_line = [int(c) for c in line if c.isnumeric()]
         score += digit_line[0] * 10 + digit_line[-1]
-    print(score)
+    return score
 
 def part_two(input_as_string: str):
     score = 0
     for line in input_as_string.splitlines():
         digit_line = [int(c) for c in prepare_line(line) if c.isnumeric()]
         score += digit_line[0] * 10 + digit_line[-1]
-    print(score)
-    
-import sys
-
-file_as_string = open(sys.argv[1]).read()
-part_one(file_as_string)
-part_two(file_as_string)
+    return score

@@ -42,7 +42,7 @@ def part_one(input_as_string: str):
         card_counts = dict([(c, hand.count(c)) for c in set(hand)])
         scored_hand.append(([CARD_VALUE[c] for c in hand], determine_hand(card_counts), int(score)))
     scored_hand.sort(key=functools.cmp_to_key(sort_by_val))
-    print(sum([(i + 1) * s[2] for i, s in enumerate(scored_hand)]))
+    return sum([(i + 1) * s[2] for i, s in enumerate(scored_hand)])
         
 def part_two(input_as_string: str):
     CARD_VALUE['J'] = 1
@@ -56,9 +56,4 @@ def part_two(input_as_string: str):
             card_counts[m] += j
         scored_hand.append(([CARD_VALUE[c] for c in hand], determine_hand(card_counts), int(score)))
     scored_hand.sort(key=functools.cmp_to_key(sort_by_val))
-    print(sum([(i + 1) * s[2] for i, s in enumerate(scored_hand)]))
-    
-import math, sys, re
-input_as_string = open(sys.argv[1]).read()
-part_one(input_as_string)
-part_two(input_as_string)
+    return sum([(i + 1) * s[2] for i, s in enumerate(scored_hand)])

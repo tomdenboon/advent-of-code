@@ -14,7 +14,7 @@ def part_one(input_as_string: str):
             if len(destination) == i:
                 destination.append(s)
         source = destination
-    print(min(source))
+    return min(source)
 
 
 def part_two(input_as_string: str):
@@ -48,9 +48,4 @@ def part_two(input_as_string: str):
                     next_source.append((r_remained_left, source_right))
             source = next_source
         source = destination + source
-    print(min([s[0] for s in source]))
-
-import math, sys, re
-input_as_string = open(sys.argv[1]).read()
-part_one(input_as_string)
-part_two(input_as_string)
+    return min([s[0] for s in source])

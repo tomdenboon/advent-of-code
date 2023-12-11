@@ -3,15 +3,16 @@ import os,sys
 
 year = "2023"
 session=open(".cookie").read().strip()
+print(session)
 remove_old_dir = False
 day = ""
 template = """import math, re
 
-def part_one(I: str):
-    print("TODO")
+def part_one(input_str: str):
+    return 0
         
-def part_two(I: str):
-    print("TODO")
+def part_two(input_str: str):
+    return 0
 """
 
 
@@ -47,7 +48,7 @@ if not os.path.isdir(day_dir):
 
     print(f"Initializing day {day}...")
 
-    curl = f"curl -b \"session={session}\" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt"
+    curl = f"curl -s -b \"session={session}\" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt"
     os.system(curl)
     os.system(f"cp {day_dir}/input.txt {day_dir}/example.txt")
 
@@ -56,4 +57,4 @@ if not os.path.isdir(day_dir):
 
     print("Done!")
 else:
-    print(f"Day {day} is already initialized, use -rm to reset this day.")
+    print(f"Day {day} is already initialized, use -r to reset this day.")

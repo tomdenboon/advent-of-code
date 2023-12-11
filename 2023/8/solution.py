@@ -1,3 +1,5 @@
+import math
+
 def parse_input(I: str):
     I, graph = I.split("\n\n")
     G = {}
@@ -14,18 +16,13 @@ def solve(I, G, N, predicate):
         steps += 1
     return steps
 
-def part_one(input_as_stringI: str):
-    I, G = parse_input(input_as_stringI)
-    print(solve(I, G, "AAA", lambda N: N != 'ZZZ'))
+def part_one(input_as_string: str):
+    I, G = parse_input(input_as_string)
+    return solve(I, G, "AAA", lambda N: N != 'ZZZ')
 
-def part_two(input_as_stringI: str):
-    I, G = parse_input(input_as_stringI)
+def part_two(input_as_string: str):
+    I, G = parse_input(input_as_string)
     R = 1
     for N in [N for N in G if N[-1] == 'A']:
         R = math.lcm(R, solve(I, G, N, lambda N: N[-1] != 'Z'))
-    print(R)
-    
-import math, sys
-input_as_string = open(sys.argv[1]).read()
-part_one(input_as_string)
-part_two(input_as_string)
+    return R

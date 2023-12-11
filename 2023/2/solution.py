@@ -19,7 +19,7 @@ def score_part2(line: str):
     return math.prod(colors.values())
 
 def part_one(input_as_string: str):
-    print(sum(map(score_part1, input_as_string.splitlines())))
+    return sum(map(score_part1, input_as_string.splitlines()))
         
 def part_two(input_as_string: str):
-    print(sum(map(score_part2, input_as_string.splitlines())))
+    return sum(map(score_part2, input_as_string.splitlines()))

@@ -30,9 +30,8 @@ day = validate_day(day)
 
 input_file = "example.txt" if test else "input.txt"
 day_input = f"{dir_path}/{year}/{day}/{input_file}"
-day_file = f"{dir_path}/{year}/{day}/solution.py"
 
 solution = importlib.import_module(f"{year}.{day}.solution")
 input_as_string = open(day_input).read()
-solution.part_one(input_as_string)
-solution.part_two(input_as_string)
+print(solution.part_one(input_as_string))
+print(solution.part_two(input_as_string))
