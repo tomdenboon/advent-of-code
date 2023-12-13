@@ -2,17 +2,24 @@
 import os,sys
 
 year = "2023"
-session=open(".cookie").read().strip()
-print(session)
+session=open(".cookie").read()
 remove_old_dir = False
 day = ""
-template = """import math, re
+solution = """import math, re
 
 def part_one(input_str: str):
     return 0
         
 def part_two(input_str: str):
     return 0
+"""
+tests = """examples = [ """""" ]
+
+def part_one():
+    return [(examples[0], None)]
+    
+def part_two():
+    return [(examples[0], None)]
 """
 
 
@@ -50,9 +57,9 @@ if not os.path.isdir(day_dir):
 
     curl = f"curl -s -b \"session={session}\" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt"
     os.system(curl)
-    os.system(f"cp {day_dir}/input.txt {day_dir}/example.txt")
 
-    open(f"{day_dir}/solution.py", "w").write(template)
+    open(f"{day_dir}/solution.py", "w").write(solution)
+    open(f"{day_dir}/tests.py", "w").write(tests)
     os.system(f"code {day_dir}/solution.py")
 
     print("Done!")

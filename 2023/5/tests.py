@@ -1,4 +1,4 @@
-seeds: 79 14 55 13
+examples = [ """seeds: 79 14 55 13
 
 seed-to-soil map:
 50 98 2
@@ -30,4 +30,10 @@ temperature-to-humidity map:
 
 humidity-to-location map:
 60 56 37
-56 93 4
+56 93 4"""]
+
+def part_one():
+    return [(examples[0], 35)]
+    
+def part_two():
+    return [(examples[0], 46)]

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 year = "2023"
-test = False
 day = ""
+test = False
 
 import os,sys, importlib
 
@@ -27,11 +27,27 @@ for arg in sys.argv[1:]:
             day = arg
 
 day = validate_day(day)
-
-input_file = "example.txt" if test else "input.txt"
-day_input = f"{dir_path}/{year}/{day}/{input_file}"
-
 solution = importlib.import_module(f"{year}.{day}.solution")
-input_as_string = open(day_input).read()
-print(solution.part_one(input_as_string))
-print(solution.part_two(input_as_string))
+tests = importlib.import_module(f"{year}.{day}.tests")
+input_string = open(f"{dir_path}/{year}/{day}/input.txt").read()
+
+def run_part(solution, tests):
+    passed = 0
+    for (input_string_test, answer) in tests():
+        a = solution(input_string_test)
+        print(f"actual: {a}", end="")
+        if a == answer or answer == None:
+            if a == answer:
+                print(f", expected: { answer } \u2705")
+            else:
+                print(" \u2753")
+            passed += 1
+        else:
+            print(f", expected: { answer } \u274c")
+    print(f"passed {passed}/{len(tests())} tests")
+    if not test:
+        print(f"answer: { solution(input_string) }")
+
+run_part(solution.part_one, tests.part_one)
+print()
+run_part(solution.part_two, tests.part_two)
