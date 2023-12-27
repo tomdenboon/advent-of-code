@@ -1,13 +1,18 @@
 #!/usr/bin/env python
+
+import os
+import sys
+import importlib
+
 year = "2023"
 day = ""
 test = False
 
-import os,sys, importlib
 
 sys.dont_write_bytecode = True
 dir_path = os.path.dirname(os.path.realpath(__file__))
 dir_path = dir_path.replace("/bin", "")
+
 
 def validate_day(day):
     if day == "":
@@ -18,7 +23,7 @@ def validate_day(day):
         exit()
     return int(day)
 
- 
+
 for arg in sys.argv[1:]:
     match arg:
         case "-t":
@@ -31,9 +36,10 @@ solution = importlib.import_module(f"{year}.{day}.solution")
 tests = importlib.import_module(f"{year}.{day}.tests")
 input_string = open(f"{dir_path}/{year}/{day}/input.txt").read()
 
+
 def run_part(solution, tests):
     passed = 0
-    for (input_string_test, answer) in tests():
+    for input_string_test, answer in tests():
         a = solution(input_string_test)
         print(f"actual: {a}", end="")
         if a == answer or answer == None:
@@ -47,6 +53,7 @@ def run_part(solution, tests):
     print(f"passed {passed}/{len(tests())} tests")
     if not test:
         print(f"answer: { solution(input_string) }")
+
 
 run_part(solution.part_one, tests.part_one)
 print()

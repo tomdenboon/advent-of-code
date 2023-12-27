@@ -19,13 +19,13 @@ def prepare_line(line):
 def part_one(input_as_string: str):
     score = 0
     for line in input_as_string.splitlines():
-        digit_line = [int(c) for c in line if c.isnumeric()]
-        score += digit_line[0] * 10 + digit_line[-1]
+        digit_line = [c for c in line if c.isnumeric()]
+        score += int(digit_line[0] + digit_line[-1])
     return score
 
 def part_two(input_as_string: str):
     score = 0
     for line in input_as_string.splitlines():
-        digit_line = [int(c) for c in prepare_line(line) if c.isnumeric()]
-        score += digit_line[0] * 10 + digit_line[-1]
+        digit_line = [c for c in prepare_line(line) if c.isnumeric()]
+        score += int(digit_line[0] + digit_line[-1])
     return score
