@@ -1,6 +1,5 @@
 def part_one(input_str: str):
     left, right = parse_input(input_str)
-
     left.sort()
     right.sort()
 
