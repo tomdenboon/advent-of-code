@@ -8,11 +8,9 @@ year = "2024"
 day = ""
 test = False
 
-
 sys.dont_write_bytecode = True
 dir_path = os.path.dirname(os.path.realpath(__file__))
 dir_path = dir_path.replace("/bin", "")
-
 
 def validate_day(day):
     if day == "":
@@ -36,7 +34,6 @@ solution = importlib.import_module(f"{year}.{day}.solution")
 tests = importlib.import_module(f"{year}.{day}.tests")
 input_string = open(f"{dir_path}/{year}/{day}/input.txt").read()
 
-
 def run_part(solution, tests):
     passed = 0
     for input_string_test, answer in tests():
@@ -53,7 +50,6 @@ def run_part(solution, tests):
     print(f"passed {passed}/{len(tests())} tests")
     if not test:
         print(f"answer: { solution(input_string) }")
-
 
 run_part(solution.part_one, tests.part_one)
 print()

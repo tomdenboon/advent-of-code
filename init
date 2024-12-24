@@ -57,6 +57,12 @@ if not os.path.isdir(day_dir):
     curl = f'curl -s -b "session={session}" https://adventofcode.com/{year}/day/{day}/input > {day_dir}/input.txt'
     os.system(curl)
 
+    with open(f"{day_dir}/input.txt", "rb+") as f:
+        content = f.read()
+        f.seek(0)
+        f.write(content.rstrip(b'\n'))
+        f.truncate()
+
     open(f"{day_dir}/solution.py", "w").write(solution)
     open(f"{day_dir}/tests.py", "w").write(tests)
     os.system(f"code {day_dir}/solution.py")
